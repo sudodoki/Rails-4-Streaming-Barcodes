@@ -1,0 +1,19 @@
+// Place all the styles related to the Barcodes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+tr {
+  -webkit-transition: background-color 0.5s linear;
+  -moz-transition: background-color 0.5s linear;
+  -o-transition: background-color 0.5s linear;
+  -ms-transition: background-color 0.5s linear;
+  transition: background-color 0.5s linear;
+}
+.highlight-remove {
+  background-color: red;
+}
+.highlight-update {
+  background-color: yellow;
+}
+.highlight-create {
+  background-color: green;
+}

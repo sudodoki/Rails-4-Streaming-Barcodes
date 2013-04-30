@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="span8">
+      <%= form_for("user", url: sign_in_users_path, html: {class: 'user_form form-horizontal'}) do |f| %>
+        <%= f.text_field :login, placeholder: 'Your login goes here' %>
+        <%= f.password_field :password, placeholder: 'Your very own password, please' %>
+        <%= f.submit 'Sign in', class: 'btn btn-primary' %>
+        <span> or </span>
+        <%= f.submit 'Sign up', class: 'btn' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<h1>Listing barcodes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <%= render partial: 'table_head' %>
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @barcodes.each do |barcode| %>
+      <%= render "barcodes/show", handlebars: barcode.for_handlebars(current_user) %>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Barcode', new_barcode_path %>

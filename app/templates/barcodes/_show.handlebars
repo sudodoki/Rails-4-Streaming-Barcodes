@@ -1,0 +1,14 @@
+    <tr id='barcode_{{id}}'>
+      <td><strong>Code:</strong> {{code}}</td>
+      {{#if near_admin }}
+      <td><strong>User:</strong> {{user}}</td>
+      {{/if}}
+      {{#if can_write }}
+      <td>
+        <a href="{{edit_path}}">Edit</a>
+      </td>
+      <td>
+        <a href="{{delete_path}}" data-confirm="Are you sure" data-method="delete" rel="nofollow">Delete</a>
+      </td>
+      {{/if}}
+    </tr>

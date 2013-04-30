@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @barcode.code %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @barcode.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_barcode_path(@barcode) %> |
+<%= link_to 'Back', barcodes_path %>

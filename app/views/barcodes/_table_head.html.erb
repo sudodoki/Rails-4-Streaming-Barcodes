@@ -1,0 +1,7 @@
+<%- if current_user.near_admin? %>
+  <th>User</th>
+  <%- if current_user.can_write? %>
+    <th></th>
+    <th></th>
+  <% end %>
+<% end %>
