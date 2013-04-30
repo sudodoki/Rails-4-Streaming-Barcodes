@@ -7,7 +7,7 @@ In order to run this app, you should consider installing and running
 
 * redis
 
-* ```memcached -l localhost``` (dalli is used for session storage and it's not so good at connecting to 127.0.0.1, but localhost is seems to be just fine)
+* ```memcached -l localhost``` (dalli is used for session storage and it's not so good at connecting to 127.0.0.1, but localhost seems to be just fine)
 
 * ruby version 2.0.0
 
