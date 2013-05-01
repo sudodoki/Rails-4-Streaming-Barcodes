@@ -15,5 +15,6 @@ In order to run this app, you should consider installing and running
 
 And yes, this app uses postgres and final_task_#{environment} names for db and not database.yml.sample, because I'm lazy.
 
-What is done: while on the main page, editing-removing-creating barcodes is visualized via css highlight and some animations of prepending-removing elements from the barcodes table.
-What can be added for the sake of proving concept: small notification to appear on other pages that will say something like 'barcode was #{action}' and link to barcode in case it wasn't destroyed. Better views, concerning users roles.
+What is done: while on the main page, editing-removing-creating barcodes is visualized via css highlight and some animations of prepending-removing elements from the barcodes table,
+small notification to appear on other pages that will say something like 'barcode was #{action}' and link to barcode in case it wasn't destroyed, some enhanced views, concerning users roles.
+What to add: when streaming we get the user role in the data from the session that invoked action. i.e.: admin updates barcode - everyone has view with admin buttons rendered. Need to change that. Probably.
