@@ -2,23 +2,40 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+removeEl = ->
+  @fadeOut('fast', (=> @remove()))
+
+replaceContent = (elToSet) ->
+  idChanging = @attr('id')
+  @attr('id', 'old_' + idChanging)
+  @after(elToSet)
+  $('#' + idChanging)
+    .css('opacity', 0)
+    .addDelayedRemoveClass(@attr('class'), 2500)
+    .animate
+      'opacity': 1
+    , 'fast'
+  $('#old_' + idChanging).remove()
 
 console.log 'started listening'
 window.source = new EventSource("/barcode/stream")
+
 source.addEventListener "barcodes.create", (e) ->
   data = JSON.parse(e.data)
-  console.log data.id, 'create'
-  console.log SHT['barcodes/show'](data)
+  element =  SHT['barcodes/show'](data)
+  $('#barcodes tbody').prepend(element)
+  $("#barcode_#{data.id}").addDelayedRemoveClass('highlight-create', 5000)
 
 source.addEventListener "barcodes.update", (e) ->
   data = JSON.parse(e.data)
-  console.log data.id, 'update'
-  $("#barcode_#{data.id}").addClass('highlight-update')
-  console.log SHT['barcodes/show'](data)
+  updatedDomEl = SHT['barcodes/show'](data)
+  $el = $("#barcode_#{data.id}")
+  $el.addDelayedRemoveClass('highlight-update', 5000, (-> replaceContent.call $el, updatedDomEl))
+
 source.addEventListener "barcodes.destroy", (e) ->
   data = JSON.parse(e.data)
-  $("#barcode_#{data.id}").addClass('highlight-remove').fadeOut('fast', (-> @remove()))
-  console.log data.id, 'destroy'
+  $("#barcode_#{data.id}").addDelayedRemoveClass('highlight-remove', 5000, removeEl)
+
 $ ->
   $(window).onbeforeunload = ->
     console.log 'unloading'

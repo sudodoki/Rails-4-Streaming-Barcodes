@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require barcodes
 //= require handlebars
 //= require_tree ../../templates
-
+//= require_tree ./

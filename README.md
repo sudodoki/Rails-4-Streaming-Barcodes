@@ -14,3 +14,6 @@ In order to run this app, you should consider installing and running
 * ```rake db:create db:migrate db:seed``` or ```rake db:setup```
 
 And yes, this app uses postgres and final_task_#{environment} names for db and not database.yml.sample, because I'm lazy.
+
+What is done: while on the main page, editing-removing-creating barcodes is visualized via css highlight and some animations of prepending-removing elements from the barcodes table.
+What can be added for the sake of proving concept: small notification to appear on other pages that will say something like 'barcode was #{action}' and link to barcode in case it wasn't destroyed. Better views, concerning users roles.
