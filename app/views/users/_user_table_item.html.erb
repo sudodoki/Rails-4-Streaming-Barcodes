@@ -1,0 +1,10 @@
+<td>
+  <%= user.login %>
+</td>
+<%- if current_user.near_admin? and !user.can_write?%>
+  <td><%= user.password %></td>
+  <td><%= link_to 'Show', user %> |</td>
+<% end %>
+<td>
+  <%= render partial: 'shared/actions', locals: actions_for_user(user, {no_index: true})%>
+</td>

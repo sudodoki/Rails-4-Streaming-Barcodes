@@ -8,7 +8,7 @@ class Barcode < ActiveRecord::Base
     {
       id: self.id,
       code: self.code,
-      user: self.user_id,
+      user: self.user.login,
       near_admin: current_user.near_admin?,
       can_write: current_user.can_write?,
       edit_path: edit_barcode_path(self),

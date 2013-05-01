@@ -1,0 +1,9 @@
+<%- if current_user.near_admin? %>
+  <th><%= custom_field %></th>
+  <%- if current_user.can_write? %>
+    <%- (trs ||= 2).times do%>
+      <th></th>
+    <% end %>
+  <% end %>
+<% end %>
+

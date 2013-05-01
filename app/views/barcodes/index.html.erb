@@ -1,12 +1,10 @@
-<h1>Listing barcodes</h1>
+<h1><%= (defined? @custom_title) ? @custom_title : 'Listing barcodes' %></h1>
 
 <table id='barcodes'>
   <thead>
     <tr>
       <th>Code</th>
-      <%= render partial: 'table_head' %>
-
-
+      <%= render partial: 'shared/table_head', locals: {custom_field: 'User'} %>
     </tr>
   </thead>
 

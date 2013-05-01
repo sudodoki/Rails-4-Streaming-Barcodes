@@ -5,11 +5,15 @@
   <%= @user.login %>
 </p>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%- if current_user.near_admin? %>
+  <p>
+    <strong>Password:</strong>
+    <%= @user.password %>
+  </p>
+  <p>
+    <%= link_to barcodes_user_path(@user) do %>
+      <strong>Barcodes</strong>
+    <% end %>
+  </p>
+<% end%>
+<%= render partial: 'shared/actions', locals: {item: @user} %>

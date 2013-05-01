@@ -1,15 +1,18 @@
 <p id="notice"><%= notice %></p>
+<%= div_for @barcode do |barcode| %>
+  <p>
+    <strong>Code:</strong>
+    <%= barcode.code %>
+  </p>
 
-<p>
-  <strong>Code:</strong>
-  <%= @barcode.code %>
-</p>
+  <% if current_user.near_admin? %>
+    <p>
+      <strong>User:</strong>
+      <%= link_to barcode.user.login, barcode.user %>
+    </p>
+  <% else %>
+    <p>That's the most info I can tell you, sorry, mate.</p>
+  <% end %>
 
-<p>
-  <strong>User:</strong>
-  <%= @barcode.user %>
-</p>
-
-
-<%= link_to 'Edit', edit_barcode_path(@barcode) %> |
-<%= link_to 'Back', barcodes_path %>
+  <%= render partial: 'shared/actions', locals: {no_destroy: true, item: barcode} %>
+<% end %>

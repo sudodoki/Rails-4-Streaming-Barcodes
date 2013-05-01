@@ -7,7 +7,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: final_task_development
-  pool: 10
+  pool: 15
   username: postgres
   password: postgres
 

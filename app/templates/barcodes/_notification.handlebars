@@ -1,0 +1,14 @@
+<p>
+  <strong>Code:</strong> {{code}} was {{action}}
+  <a href='{{delete_path}}'> check it out.</a>
+</p>
+  {{#if near_admin }}
+    <strong>by user:</strong> {{user}}
+  {{/if}}
+<p>
+  {{#if can_write }}
+    <a href="{{edit_path}}">Edit</a>
+
+    <a href="{{delete_path}}" data-confirm="Are you sure" data-method="delete" rel="nofollow">Delete</a>
+  {{/if}}
+</p>

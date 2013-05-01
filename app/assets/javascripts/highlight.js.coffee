@@ -1,6 +1,5 @@
 do ($ = jQuery, window = window) ->
   $.fn.addDelayedRemoveClass = (className, delay, interrupt = $.noop) ->
-    console.log 'highlight was called with ', @, arguments
     @addClass(className)
     setTimeout((=>
       @removeClass(className)

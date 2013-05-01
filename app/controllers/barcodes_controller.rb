@@ -20,6 +20,7 @@ class BarcodesController < ApplicationController
   end
   # GET /barcodes
   # GET /barcodes.json
+
   def index
     @barcodes = Barcode.all
   end
@@ -36,6 +37,13 @@ class BarcodesController < ApplicationController
 
   # GET /barcodes/1/edit
   def edit
+  end
+
+  def by_user
+    user = User.find(params[:id])
+    @barcodes = user.barcodes
+    @custom_title = "Barcode's by #{user.login} "
+    render :index
   end
 
   # POST /barcodes

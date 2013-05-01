@@ -19,6 +19,11 @@
     <%= f.label :password %><br />
     <%= f.text_field :password %>
   </div>
+  <% if current_user.can_write? %>
+    <%= fields_for @user.role do |role_fields| %>
+      <%= role_fields.collection_select(:id, Role.all.all, :id, :name) %>
+    <% end %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

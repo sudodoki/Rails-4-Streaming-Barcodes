@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :restrict, only: [:edit, :update, :destroy]
 
+
+  def restrict
+    render nothing: true if @user != current_user and @user.can_write?
+  end
 
   def sign_in
     if params[:user]
@@ -36,11 +41,6 @@ class UsersController < ApplicationController
   def show
   end
 
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
   # GET /users/1/edit
   def edit
   end
@@ -66,6 +66,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        @user.role = Role.find(params[:role][:id]) if current_user.can_write?
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else

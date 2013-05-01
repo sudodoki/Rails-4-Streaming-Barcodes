@@ -1,11 +1,15 @@
 FinalTask::Application.routes.draw do
-  resources :barcodes
-  match 'barcode/stream', to: 'barcodes#stream', via: :all
+  resources :barcodes do
+    get :stream, on: :collection
+  end
+  # match 'barcode/stream', to: 'barcodes#stream', via: :all
   resources :users do
+    get 'barcodes', on: :member, to: 'barcodes#by_user'
     match 'sign_in', on: :collection, via: [:get, :post]
     get 'sign_out', on: :collection
   end
 
+  get 'admin', to: 'users#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

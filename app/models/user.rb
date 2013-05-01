@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_one :role_attachment
   has_one :role, through: :role_attachment
+  has_many :barcodes
 
   def self.create_by_attr_and_role(login = 'Lolka', password = '123456', role = 'user')
     user = User.new(login: login, password: password)

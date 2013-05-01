@@ -1,0 +1,13 @@
+<%- if current_user.can_write? %>
+    <%- unless defined? no_destroy %>
+      <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %>
+      |
+    <% end %>
+    <%- unless defined? no_edit %>
+      <%= link_to 'Edit', send("edit_#{item.class.name.downcase}_path".to_sym, item)  %>
+      |
+    <% end %>
+    <%- unless defined? no_index %>
+      <%= link_to 'Back', send("#{item.class.name.downcase.pluralize}_path".to_sym) %>
+    <% end %>
+<% end%>
