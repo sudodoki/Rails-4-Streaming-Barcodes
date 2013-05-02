@@ -8,7 +8,8 @@ class BarcodesController < ApplicationController
     redis = Redis.new
     redis.psubscribe('barcodes.*') do |on|
     on.pmessage do |pattern, event, data|
-        print pattern, "\n", event, "\n", data, "\n"
+        barcode = Barcode.find(data)
+        data = barcode.for_handlebars(current_user).to_json
         response.stream.write("event: #{event}\ndata: #{data}\n\n")
       end
     end
@@ -52,7 +53,7 @@ class BarcodesController < ApplicationController
     @barcode = Barcode.new(barcode_params)
     respond_to do |format|
       if @barcode.save
-        $redis.publish('barcodes.create', @barcode.for_handlebars(current_user).to_json)
+        $redis.publish('barcodes.create', @barcode.id)
         format.html { redirect_to @barcode, notice: 'Barcode was successfully created.' }
         format.json { render action: 'show', status: :created, location: @barcode }
       else
@@ -67,7 +68,7 @@ class BarcodesController < ApplicationController
   def update
     respond_to do |format|
       if @barcode.update(barcode_params)
-        $redis.publish('barcodes.update', @barcode.for_handlebars(current_user).to_json)
+        $redis.publish('barcodes.update', @barcode.id)
         format.html { redirect_to @barcode, notice: 'Barcode was successfully updated.' }
         format.json { head :no_content }
       else
@@ -82,7 +83,7 @@ class BarcodesController < ApplicationController
   def destroy
     @barcode.destroy
     respond_to do |format|
-      $redis.publish('barcodes.destroy', @barcode.for_handlebars(current_user).to_json)
+      $redis.publish('barcodes.destroy', @barcode.id)
       format.html { redirect_to barcodes_url }
       format.json { head :no_content }
     end
